@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function Page() {
   return (
@@ -7,7 +8,9 @@ export default function Page() {
         <div>
           <h1 className="font-medium">Ping pong game!</h1>
           <p>You may now start playing</p>
-          <Button className="mt-2">start</Button>
+          <Button className="mt-2">
+            <Link href={"/pong"}>start</Link>
+          </Button>
         </div>
         <div className="font-mono text-xs text-muted-foreground">
           (Press <kbd>d</kbd> to toggle dark mode)
