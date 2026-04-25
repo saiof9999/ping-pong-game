@@ -29,6 +29,9 @@ export default function PongGame() {
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+        function handleKey(e:KeyboardEvent) {
+            const speed=20
+        }
 
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -52,8 +55,34 @@ export default function PongGame() {
             if (ball.current.y < 0 || ball.current.y > canvas.height) {
                 ball.current.dy *= -1
             }
-            //continue from here
+
+            //paddle collision left
+            if (
+                ball.current.x < 20 &&
+                ball.current.y > leftPaddle.current.y &&
+                ball.current.y < leftPaddle.current.y + PaddleHeight
+            ) {
+                ball.current.dx *= -1
+            }
+
+            //paddle collision right
+            if (
+                ball.current.x < 780 &&
+                ball.current.y > rightPaddle.current.y &&
+                ball.current.y < rightPaddle.current.y + PaddleHeight
+            ) {
+                ball.current.dx *= -1
+            }
+
         }
+
+        function loop() {
+            update()
+            draw()
+            requestAnimationFrame(loop)
+        }
+
+        loop()
     }, []);
 
 
