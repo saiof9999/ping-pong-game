@@ -31,6 +31,14 @@ export default function PongGame() {
 
         function handleKey(e:KeyboardEvent) {
             const speed=20
+
+            //keys left
+            if(e.key == "w") leftPaddle.current.y -= speed
+            if(e.key == "s") leftPaddle.current.y += speed
+
+            //keys right
+            if(e.key == "ArrowUp") rightPaddle.current.y -= speed
+            if(e.key == "ArrowDown") rightPaddle.current.y += speed
         }
 
         function draw() {
@@ -83,6 +91,9 @@ export default function PongGame() {
         }
 
         loop()
+        window.addEventListener("keydown", handleKey)
+
+        return () => window.removeEventListener("keydown", handleKey)
     }, []);
 
 
