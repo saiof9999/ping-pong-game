@@ -13,8 +13,8 @@ export default function PongGame() {
     const ball = useRef({
         x: 500,
         y: 250,
-        dx: 4,
-        dy: 4,
+        dx: 2,
+        dy: 2,
         size: 10,
     })
 
@@ -75,7 +75,7 @@ export default function PongGame() {
 
             //paddle collision right
             if (
-                ball.current.x < 780 &&
+                ball.current.x < 850 &&
                 ball.current.y > rightPaddle.current.y &&
                 ball.current.y < rightPaddle.current.y + PaddleHeight
             ) {
