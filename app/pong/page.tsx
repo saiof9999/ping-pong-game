@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useEffect, useRef } from "react";
 
 export default function PongGame() {
@@ -29,16 +30,16 @@ export default function PongGame() {
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        function handleKey(e:KeyboardEvent) {
-            const speed=20
+        function handleKey(e: KeyboardEvent) {
+            const speed = 20
 
             //keys left
-            if(e.key == "w") leftPaddle.current.y -= speed
-            if(e.key == "s") leftPaddle.current.y += speed
+            if (e.key == "w") leftPaddle.current.y -= speed
+            if (e.key == "s") leftPaddle.current.y += speed
 
             //keys right
-            if(e.key == "ArrowUp") rightPaddle.current.y -= speed
-            if(e.key == "ArrowDown") rightPaddle.current.y += speed
+            if (e.key == "ArrowUp") rightPaddle.current.y -= speed
+            if (e.key == "ArrowDown") rightPaddle.current.y += speed
         }
 
         function draw() {
@@ -95,12 +96,15 @@ export default function PongGame() {
 
         return () => window.removeEventListener("keydown", handleKey)
     }, []);
-
-
+    function onStartClick() {
+        ball.current.x = 0
+        ball.current.y = 0
+    }
 
     return (
         <div className="flex justify-center items-center h-screen hg-gray-900">
             <canvas ref={canvasref} className="border border-white shadow-2xl shadow-[shadow]-300" />
+            <Button onClick={() => onStartClick()}>Start</Button>
         </div>
     )
 }
