@@ -19,6 +19,11 @@ export default function PongGame() {
         size: 10,
     })
 
+        const playSound = () => {
+            // We create the instance inside the handler to avoid SSR issues
+            const audio = new Audio('/humordome-boing-boing-bounce-454474.mp3');
+            audio.play().catch(e => console.error("Playback failed:", e));
+        }
 
     useEffect(() => {
         const canvas = canvasref.current!;
@@ -63,6 +68,7 @@ export default function PongGame() {
             //wall collision
             if (ball.current.y < 0 || ball.current.y > canvas.height) {
                 ball.current.dy *= -1
+                playSound()
             }
 
             //paddle collision left
@@ -72,6 +78,7 @@ export default function PongGame() {
                 ball.current.y < leftPaddle.current.y + PaddleHeight
             ) {
                 ball.current.dx *= -1
+                playSound()
             }
 
             //paddle collision right
@@ -81,6 +88,7 @@ export default function PongGame() {
                 ball.current.y < rightPaddle.current.y + PaddleHeight
             ) {
                 ball.current.dx *= -1
+                playSound()
             }
 
         }
